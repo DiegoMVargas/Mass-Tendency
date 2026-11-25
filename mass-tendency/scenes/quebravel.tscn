@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://elui42t1scy1"]
+
+[ext_resource type="Script" uid="uid://c6qxnaya7ekgg" path="res://scripts/quebravel.gd" id="1_yye6a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3sytw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3sytw"]
+
+[node name="quebravel" type="Area3D" unique_id=620148753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51138246, 0)
+script = ExtResource("1_yye6a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=439627053]
+shape = SubResource("BoxShape3D_3sytw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=771871901]
+mesh = SubResource("BoxMesh_3sytw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

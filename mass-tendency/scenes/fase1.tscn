@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://4trykad7g6yl"]
+
+[ext_resource type="PackedScene" uid="uid://djmeariisbax2" path="res://scenes/player.tscn" id="1_q0yem"]
+[ext_resource type="Script" uid="uid://qhffu2k105jx" path="res://scripts/player1.gd" id="2_hrl3v"]
+[ext_resource type="PackedScene" uid="uid://elui42t1scy1" path="res://scenes/quebravel.tscn" id="2_j60hp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j60hp"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_hrl3v"]
+sky_material = SubResource("ProceduralSkyMaterial_j60hp")
+
+[sub_resource type="Environment" id="Environment_5ca1b"]
+background_mode = 2
+sky = SubResource("Sky_hrl3v")
+glow_enabled = true
+
+[node name="fase1" type="Node3D" unique_id=167812684]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=736235654]
+environment = SubResource("Environment_5ca1b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=741036084]
+transform = Transform3D(0.9749633, 0.03623214, 0.21939409, -0.22236578, 0.1588599, 0.961934, 0, -0.9866361, 0.16293935, 0, 24.3737, 6.9559584)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=245315751]
+transform = Transform3D(2.2578669, 0, 0, 0, 2.4215064, 0, 0, 0, 2.9813495, -3.1548173, -1.045079, 0.21416247)
+use_collision = true
+size = Vector3(8.643829, 1, 9.9104)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=482680711]
+transform = Transform3D(2.2578669, 0, 0, 0, 2.4215064, 0, 0, 0, 2.9813495, 10.124098, -3.6428654, 0.21416247)
+use_collision = true
+size = Vector3(8.643829, 1, 9.9104)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1585271005]
+transform = Transform3D(2.2578669, 0, 0, 0, 2.4215064, 0, 0, 0, 2.9813495, 21.971903, -0.98719597, 0.21416247)
+use_collision = true
+size = Vector3(8.643829, 1, 9.9104)
+
+[node name="CharacterBody3D" parent="." unique_id=877967546 node_paths=PackedStringArray("ray") instance=ExtResource("1_q0yem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19479346, 0)
+script = ExtResource("2_hrl3v")
+move_speed = 5.0
+jump_impulse = 10.0
+acceleration = 15.0
+ray = NodePath("CameraPivot/SpringArm3D/Camera3D/HookRayCast")
+max_hook_range = 25.0
+pull_speed = 30.0
+
+[node name="HookController" parent="CharacterBody3D" index="3" unique_id=278377340]
+script = null
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=494142616]
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1430354784]
+transform = Transform3D(2.2578669, 0, 0, 0, 2.4215064, 0, 0, 0, 2.9813495, 14.707194, 3.8133645, 4.9572787)
+size = Vector3(1, 0.841095, 0.79589844)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1567920267]
+transform = Transform3D(-9.869449e-08, -2.4215064, 0, 2.2578669, -1.05847406e-07, 0, 0, 0, 2.9813495, 9.0392, 9.725581, 1.5330114)
+size = Vector3(1, 0.159729, 0.79589844)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2124617868]
+transform = Transform3D(1.7881393e-07, 2.4215064, 0, -2.2578669, 1.1920929e-07, 0, 0, 0, 2.9813492, -2.2024999, 6.9971066, 0.5792732)
+size = Vector3(1.3486328, 0.159729, 1.0114746)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D5" unique_id=737989470]
+transform = Transform3D(0.7427202, 3.5527137e-15, 0, -7.1054274e-15, 0.2747942, 0, 0, 0, 0.5235265, 0, 0, -0.0003194809)
+operation = 2
+size = Vector3(1.5136719, 1, 1.6494141)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1873219801]
+transform = Transform3D(2.2578669, 0, 0, 0, 2.4215064, 0, 0, 0, 2.9813495, -7.5018263, 7.216571, 0.7417313)
+size = Vector3(0.70495605, 5.941269, 9.208893)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=656059004]
+transform = Transform3D(2.2578669, 0, 0, 0, 2.4215064, 0, 0, 0, 2.9813495, 9.125694, 6.9901104, 2.1368241)
+size = Vector3(1.0107422, 0.33325982, 3.5061035)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=987968916]
+
+[node name="quebravel" parent="." unique_id=620148753 instance=ExtResource("2_j60hp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5761175, 9.472845, 8.188669)
+
+[editable path="CharacterBody3D"]

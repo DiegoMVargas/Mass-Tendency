@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://djmeariisbax2"]
+
+[ext_resource type="Script" uid="uid://cyd6ku231irla" path="res://scripts/player2.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dxcmw25nuhkbm" path="res://scripts/grapple_controller2.gd" id="2_g2els"]
+[ext_resource type="ArrayMesh" uid="uid://o5abkmyxsw5q" path="res://assets/models/hook.obj" id="2_qhqgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3sytw"]
+radius = 0.35205078
+height = 1.9082642
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3vyb7"]
+
+[node name="Player" type="CharacterBody3D" unique_id=877967546]
+script = ExtResource("1_3vyb7")
+move_speed = 7.0
+jump_impulse = 12.0
+acceleration = 40.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=715117910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9382894, 0)
+shape = SubResource("CapsuleShape3D_3sytw")
+
+[node name="HookSkin" type="MeshInstance3D" parent="." unique_id=38216247]
+unique_name_in_owner = true
+mesh = ExtResource("2_qhqgy")
+
+[node name="HookSource" type="Marker3D" parent="." unique_id=413332716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3569765, 0.98969877, -0.20108032)
+
+[node name="HookController" type="Node" parent="." unique_id=278377340 node_paths=PackedStringArray("ray")]
+script = ExtResource("2_g2els")
+ray = NodePath("../CameraPivot/SpringArm3D/Camera3D/HookRayCast")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=947349636]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7541885, 0.2455337)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=530261058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09346151, 0)
+shape = SubResource("SphereShape3D_3vyb7")
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1407604786]
+unique_name_in_owner = true
+
+[node name="HookRayCast" type="RayCast3D" parent="CameraPivot/SpringArm3D/Camera3D" unique_id=1557943482]
+target_position = Vector3(0, 0, -20)

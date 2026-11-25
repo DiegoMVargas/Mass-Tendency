@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://8s2o7t57cxy4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3sytw"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1205323227]
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=953899976]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer" unique_id=451988043]
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_3sytw")
